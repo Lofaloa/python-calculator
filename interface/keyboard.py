@@ -25,27 +25,27 @@ class Keyboard(Frame):
         equal_button = Button(self.__root, text="=")
         dot_button = Button(self.__root, text=".")
 
-        dot_button.grid(row=4, column=1)
-        equal_button.grid(row=4, column=2)
-        add_button.grid(row=4, column=3)
+        dot_button.grid(row=4, column=1, sticky="news")
+        equal_button.grid(row=4, column=2, sticky="news")
+        add_button.grid(row=4, column=3, sticky="news")
 
-        div_button.grid(row=1, column=3)
-        mul_button.grid(row=2, column=3)
-        minus_button.grid(row=3, column=3)
+        div_button.grid(row=1, column=3, sticky="news")
+        mul_button.grid(row=2, column=3, sticky="news")
+        minus_button.grid(row=3, column=3, sticky="news")
 
     def __add_digit_buttons(self):
         digit_buttons = self.digit_buttons()
 
-        digit_buttons[0].grid(row=4, column=0)
+        digit_buttons[0].grid(row=4, column=0, sticky="news")
 
-        digit_buttons[1].grid(row=3, column=0)
-        digit_buttons[2].grid(row=3, column=1)
-        digit_buttons[3].grid(row=3, column=2)
+        digit_buttons[1].grid(row=3, column=0, sticky="news")
+        digit_buttons[2].grid(row=3, column=1, sticky="news")
+        digit_buttons[3].grid(row=3, column=2, sticky="news")
 
-        digit_buttons[4].grid(row=2, column=0)
-        digit_buttons[5].grid(row=2, column=1)
-        digit_buttons[6].grid(row=2, column=2)
+        digit_buttons[4].grid(row=2, column=0, sticky="news")
+        digit_buttons[5].grid(row=2, column=1, sticky="news")
+        digit_buttons[6].grid(row=2, column=2, sticky="news")
 
-        digit_buttons[7].grid(row=1, column=0)
-        digit_buttons[8].grid(row=1, column=1)
-        digit_buttons[9].grid(row=1, column=2)
+        digit_buttons[7].grid(row=1, column=0, sticky="news")
+        digit_buttons[8].grid(row=1, column=1, sticky="news")
+        digit_buttons[9].grid(row=1, column=2, sticky="news")
