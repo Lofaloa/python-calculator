@@ -14,6 +14,7 @@ class CalculatorButton(Button):
             cursor = "hand1",
             bg = bg,
             bd = 0,
+            command = command,
             font = Font(
                 family = CalculatorButton.FONT_FAMILY,
                 size = CalculatorButton.FONT_SIZE

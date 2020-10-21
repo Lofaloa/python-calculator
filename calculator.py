@@ -1,5 +1,5 @@
 from tkinter import Tk
-from interface.window import Window
+from calculator.interface.window import Window
 
 def main():
     window = Window(root = Tk(), title="Calculator")

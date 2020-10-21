@@ -18,6 +18,9 @@ class Keyboard(Frame):
         self.__add_digit_buttons()
         self.__add_operation_buttons()
 
+    def handle_cliked_digit(self, text):
+        print(f"Button {text} has been clicked")
+
     def __add_result_button(self):
         result_button = ResultButton(self.__root)
         result_button.add_to_grid(row = 4, column = 2)
@@ -35,8 +38,14 @@ class Keyboard(Frame):
 
     def __digit_buttons(self):
         buttons = []
+        numbers = []
         for number in range(Keyboard.min_digit, Keyboard.max_digit + 1):
-            buttons.append(DigitButton(self.__root, digit = number ))
+            buttons.append(DigitButton(self.__root,
+                digit = number,
+                command = lambda value = number: self.handle_cliked_digit(value)
+            ))
+            numbers.append(number)
+        print(numbers)
         return buttons
 
     def __add_digit_buttons(self):
