@@ -29,3 +29,6 @@ class CalculatorButton(Button):
             padx = CalculatorButton.PADDING,
             pady = CalculatorButton.PADDING
         )
+
+    def on_click(self, command):
+        self.config(command = command)

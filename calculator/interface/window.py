@@ -2,7 +2,10 @@ from tkinter import Frame
 from .screen import Screen
 from .keyboard.keyboard import Keyboard
 
-class Window(Frame):
+from ..business.calculator import Calculator
+from ..business.observer import Observer
+
+class Window(Frame, Observer):
 
     MAX_ROW = 5
     MAX_COLUMN = 5
@@ -12,12 +15,19 @@ class Window(Frame):
     def __init__(self, root = None, title = ""):
         Frame.__init__(self, root, width=200, height=400)
         self.__root = root
-        self.__set_configuration(title)
-        self.__make_widgets()
+        self.__calculator = Calculator()
+        self.__screen = Screen(content=self.__calculator.expression())
+        self.__keyboard = Keyboard(self.__calculator)
+        self.__setup()
 
     def show(self):
         """ Shows this window """
         self.__root.mainloop()
+
+    def __setup(self):
+        self.__set_configuration("Calculator")
+        self.__make_widgets()
+        self.__calculator.register(self)
 
     def __set_configuration(self, title):
         self.__root.title(title)
@@ -35,7 +45,8 @@ class Window(Frame):
             self.__root.columnconfigure(column, weight = 1)
 
     def __make_widgets(self):
-        screen = Screen()
-        screen.grid(row=0, rowspan=1, columnspan=4)
-        keyboard = Keyboard()
-        keyboard.grid(row=1, rowspan=4, columnspan=4)
+        self.__screen.grid(row=0, rowspan=1, columnspan=4)
+        self.__keyboard.grid(row=1, rowspan=4, columnspan=4)
+
+    def update(self, state):
+        self.__screen.content(state)

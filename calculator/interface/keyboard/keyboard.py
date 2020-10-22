@@ -11,30 +11,30 @@ class Keyboard(Frame):
     min_digit = 0
     max_digit = 9
 
-    def __init__(self, root = None):
+    def __init__(self, calculator, root = None):
         Frame.__init__(self, root, bg="white", width=400, height=400)
         self.__root = root
-        self.__add_result_button()
-        self.__add_digit_buttons()
-        self.__add_operation_buttons()
+        self.__add_button = OperationButton(root, Operation.ADDITION)
+        self.__sub_button = OperationButton(root, Operation.SUBSTRACTION)
+        self.__mul_button = OperationButton(root, Operation.MULTIPLICATION)
+        self.__div_button = OperationButton(root, Operation.DIVISION)
 
-    def handle_cliked_digit(self, text):
-        print(f"Button {text} has been clicked")
+        self.__calculator = calculator
+
+        self.__add_result_button()
+        self.__make_digit_buttons()
+        self.__make_operation_buttons()
 
     def __add_result_button(self):
         result_button = ResultButton(self.__root)
         result_button.add_to_grid(row = 4, column = 2)
 
-    def __add_operation_buttons(self):
-        add_button = OperationButton(self.__root, Operation.ADDITION)
-        sub_button = OperationButton(self.__root, Operation.SUBSTRACTION)
-        mul_button = OperationButton(self.__root, Operation.MULTIPLICATION)
-        div_button = OperationButton(self.__root, Operation.DIVISION)
-
-        add_button.add_to_grid(row=4, column=3)
-        div_button.add_to_grid(row=1, column=3)
-        mul_button.add_to_grid(row=2, column=3)
-        sub_button.add_to_grid(row=3, column=3)
+    def __make_operation_buttons(self):
+        self.__add_button.add_to_grid(row=4, column=3)
+        self.__div_button.add_to_grid(row=1, column=3)
+        self.__mul_button.add_to_grid(row=2, column=3)
+        self.__sub_button.add_to_grid(row=3, column=3)
+        self.__add_on_click_events()
 
     def __digit_buttons(self):
         buttons = []
@@ -42,13 +42,13 @@ class Keyboard(Frame):
         for number in range(Keyboard.min_digit, Keyboard.max_digit + 1):
             buttons.append(DigitButton(self.__root,
                 digit = number,
-                command = lambda value = number: self.handle_cliked_digit(value)
+                command = lambda value = number: self.__calculator.write(value)
             ))
             numbers.append(number)
         print(numbers)
         return buttons
 
-    def __add_digit_buttons(self):
+    def __make_digit_buttons(self):
         digit_buttons = self.__digit_buttons()
         dot_button = DigitButton(self.__root, digit=".")
 
@@ -66,3 +66,9 @@ class Keyboard(Frame):
         digit_buttons[7].add_to_grid(row=1, column=0)
         digit_buttons[8].add_to_grid(row=1, column=1)
         digit_buttons[9].add_to_grid(row=1, column=2)
+
+    def __add_on_click_events(self):
+        self.__add_button.on_click(lambda: self.__calculator.write("+"))
+        self.__sub_button.on_click(lambda: self.__calculator.write("-"))
+        self.__mul_button.on_click(lambda: self.__calculator.write("x"))
+        self.__div_button.on_click(lambda: self.__calculator.write("/"))
