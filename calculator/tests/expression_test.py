@@ -9,6 +9,11 @@ class ExpressionTests(TestCase):
         with self.assertRaises(TypeError):
             expression.append_operator("+")
 
+    def test_append_operator_expression_is_empty(self):
+        expression = Expression("")
+        with self.assertRaises(ValueError):
+            expression.append_operator(Expression.Operator.SUBSTRACTION)
+
     def test_append_operator_expression_ends_with_operator(self):
         expression = Expression("2 + 2 *")
         with self.assertRaises(ValueError):
