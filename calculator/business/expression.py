@@ -36,9 +36,15 @@ class Expression:
         elif character == ")":
             self.close_parenthesis()
         elif character == ".":
-            self.__expression += character
+            self.append_dot()
         else:
             raise ValueError(f"Invalid character: {character}")
+
+    def append_dot(self):
+        ## TODO: the last dotted number should only have one dot
+        if self.__is_empty() or self.__ends_with_operator():
+            raise ValueError(f"Cannot append a dot to {self.__expression}")
+        self.__expression += "."
 
     def open_parenthesis(self):
         if self.__is_empty() or self.__ends_with_operator():

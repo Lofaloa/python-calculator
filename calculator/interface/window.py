@@ -51,5 +51,8 @@ class Window(Frame, Observer):
     def show_error(self):
         self.__screen.show_error()
 
+    def show_result(self, result):
+        self.__screen.content(result)
+
     def update(self, state):
         self.__screen.content(state)

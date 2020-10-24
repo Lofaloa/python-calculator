@@ -30,6 +30,7 @@ class Calculator(Subject):
         if self.__expression.is_evaluable():
             return self.__expression.compute()
         else:
+            print("error")
             raise ValueError("Cannot get result for an incomplete expression")
 
     def __notify(self):

@@ -46,15 +46,13 @@ class Keyboard(Frame):
         self.__dot_button.add_to_grid(row=6, column=1)
         self.__opening_par_button.add_to_grid(row=2, column=0)
         self.__closing_par_button.add_to_grid(row=2, column=1)
+        self.__dot_button.add_to_grid(row=6, column=1)
         self.__del_button.add_to_grid(row=2, column=2)
         self.__clear_button.add_to_grid(row=2, column=3)
         self.__result_button.add_to_grid(row=6, column=2)
 
     def __make_digit_buttons(self):
         digit_buttons = self.__digit_buttons()
-        dot_button = DigitButton(self.__root, digit=".")
-
-        dot_button.add_to_grid(row=6, column=1)
         digit_buttons[0].add_to_grid(row=6, column=0)
 
         digit_buttons[1].add_to_grid(row=5, column=0)
@@ -72,6 +70,10 @@ class Keyboard(Frame):
     def show_error(self):
         self.__root.show_error()
 
+    def show_result(self):
+        result = self.__calculator.result()
+        self.__root.show_result(result)
+
     def __add_on_click_events(self):
         self.__add_button.on_click(lambda: self.__calculator.write("+"))
         self.__sub_button.on_click(lambda: self.__calculator.write("-"))
@@ -81,10 +83,11 @@ class Keyboard(Frame):
         self.__opening_par_button.on_click(lambda: self.__calculator.write("("))
         self.__closing_par_button.on_click(lambda: self.__calculator.write(")"))
         self.__dot_button.on_click(lambda: self.__calculator.write("."))
-        self.__dot_button.on_click(lambda: self.__calculator.write("."))
 
         self.__del_button.on_click(lambda: self.__calculator.delete())
         self.__clear_button.on_click(lambda: self.__calculator.clear())
+
+        self.__result_button.on_click(lambda: self.show_result())
 
     def __digit_buttons(self):
         buttons = []

@@ -46,7 +46,7 @@ class CalculatorButton(Button):
         def exec(callable):
             try:
                 callable()
-            except:
+            except TypeError:
                 self.__root.show_error()
 
         self.config(command = lambda: exec(command))
