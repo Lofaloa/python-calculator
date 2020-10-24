@@ -1,5 +1,6 @@
 from tkinter import Tk, Frame, Label, RIGHT
 from tkinter.font import Font
+from threading import Timer
 
 class Screen(Frame):
 
@@ -24,6 +25,11 @@ class Screen(Frame):
             )
         )
         self.__label.grid(row=0, rowspan=2, columnspan=4, stick="news", padx=5, pady=5)
+
+    def show_error(self):
+        self.__label.config(bg="red")
+        timer = Timer(0.5, lambda: self.__label.config(bg="white"))
+        timer.start()
 
     def content(self, value):
         self.__label.config(text = value)

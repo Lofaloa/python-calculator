@@ -7,19 +7,30 @@ class CalculatorButton(Button):
     FONT_FAMILY = "Helvetica"
     FONT_SIZE = 24
 
-    def __init__(self, root=None, text="", command=None, bg = "white"):
+    def __init__(self, root = None, text="", style = None, command=None):
         Button.__init__(self,
-            root = root,
             text = text,
             cursor = "hand1",
-            bg = bg,
+            bg = self.__to_background_color(style),
             bd = 0,
             command = command,
+            width = 300 // 4,
             font = Font(
                 family = CalculatorButton.FONT_FAMILY,
                 size = CalculatorButton.FONT_SIZE
             )
         )
+        self.__root = root
+
+    def __to_background_color(self, style):
+        if style == "primary":
+            return "#908bf0"
+        elif style == "secondary" :
+            return "lightblue"
+        elif style == "danger" :
+            return "red"
+        else:
+            return "lightgrey"
 
     def add_to_grid(self, row, column):
         self.grid(
@@ -31,4 +42,11 @@ class CalculatorButton(Button):
         )
 
     def on_click(self, command):
-        self.config(command = command)
+
+        def exec(callable):
+            try:
+                callable()
+            except:
+                self.__root.show_error()
+
+        self.config(command = lambda: exec(command))

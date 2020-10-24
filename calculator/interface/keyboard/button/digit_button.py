@@ -6,8 +6,6 @@ class DigitButton(CalculatorButton):
 
     def __init__(self, root=None, digit = "0", command = None):
         CalculatorButton.__init__(self,
-            root = root,
             text = digit,
-            bg = DigitButton.BACKGROUND_COLOR,
             command = command
         )

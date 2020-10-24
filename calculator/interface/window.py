@@ -17,7 +17,7 @@ class Window(Frame, Observer):
         self.__root = root
         self.__calculator = Calculator()
         self.__screen = Screen(width = Window.WIDTH, height = 0.25 * Window.HEIGHT)
-        self.__keyboard = Keyboard(self.__calculator, width = Window.WIDTH, height = 0.75 * Window.HEIGHT)
+        self.__keyboard = Keyboard(self.__calculator, self, width = Window.WIDTH, height = 0.75 * Window.HEIGHT)
         self.__setup()
 
     def show(self):
@@ -47,6 +47,9 @@ class Window(Frame, Observer):
     def __make_widgets(self):
         self.__screen.grid(row=0, rowspan=2, columnspan=4, stick="news", padx=5, pady=5)
         self.__keyboard.grid(row=2, rowspan=4, columnspan=4)
+
+    def show_error(self):
+        self.__screen.show_error()
 
     def update(self, state):
         self.__screen.content(state)
