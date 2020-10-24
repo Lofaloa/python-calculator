@@ -17,7 +17,7 @@ class Keyboard(Frame):
 
         self.__add_button = CalculatorButton(self, "+", "secondary")
         self.__sub_button = CalculatorButton(self, "-", "secondary")
-        self.__mul_button = CalculatorButton(self, "x", "secondary")
+        self.__mul_button = CalculatorButton(self, "×", "secondary")
         self.__div_button = CalculatorButton(self, "÷", "secondary")
 
         self.__dot_button = CalculatorButton(self, ".", "secondary")

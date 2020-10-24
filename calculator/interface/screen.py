@@ -31,5 +31,13 @@ class Screen(Frame):
         timer = Timer(0.5, lambda: self.__label.config(bg="white"))
         timer.start()
 
+    def get_displayable_str(self, expression):
+        expression = expression.replace("+", " + ")
+        expression = expression.replace("-", " - ")
+        expression = expression.replace("*", " × ")
+        expression = expression.replace("/", " ÷ ")
+        return expression
+
+
     def content(self, value):
-        self.__label.config(text = value)
+        self.__label.config(text = self.get_displayable_str(value))
