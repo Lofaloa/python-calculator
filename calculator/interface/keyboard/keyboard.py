@@ -1,7 +1,6 @@
 from tkinter import Frame, Button, SOLID
 
 from .button.digit_button import DigitButton
-from .button.operation_button import OperationButton
 from .button.calculator_button import CalculatorButton
 from .button.result_button import ResultButton
 from .button.operation import Operation

@@ -21,8 +21,12 @@ class Expression:
         except:
             return False
 
-    def value(self):
-        return self.__expression
+    def value(self, value = None):
+        if value is not None:
+            self.__expression = value
+            return None
+        else:
+            return self.__expression
 
     def append(self, character):
         if character == None or type(character) is not str:
@@ -79,7 +83,7 @@ class Expression:
             self.__expression += operator
         else:
             raise ValueError((
-                "This expression ({self.__expression}) isn't"
+                f"This expression '{self.__expression}' isn't "
                 "expecting an operator"
             ))
 
@@ -94,7 +98,7 @@ class Expression:
 
     def compute(self):
         if self.is_evaluable():
-            return eval(self.__expression)
+            return round(eval(self.__expression), 3)
         else:
             raise ValueError(f"The expression {self.__expression} cannot be computed.")
 

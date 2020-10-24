@@ -53,6 +53,7 @@ class Window(Frame, Observer):
 
     def show_result(self, result):
         self.__screen.content(result)
+        self.__calculator
 
     def update(self, state):
         self.__screen.content(state)
