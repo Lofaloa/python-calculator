@@ -1,4 +1,4 @@
-from tkinter import Frame, Button
+from tkinter import Frame, Button, SOLID
 
 from .button.digit_button import DigitButton
 from .button.operation_button import OperationButton
@@ -11,8 +11,8 @@ class Keyboard(Frame):
     min_digit = 0
     max_digit = 9
 
-    def __init__(self, calculator, root = None):
-        Frame.__init__(self, root, bg="white", width=400, height=400)
+    def __init__(self, calculator, root = None, width = 0, height = 0):
+        Frame.__init__(self, root, width = width, height = height)
         self.__root = root
         self.__add_button = OperationButton(root, Operation.ADDITION)
         self.__sub_button = OperationButton(root, Operation.SUBSTRACTION)
@@ -27,13 +27,13 @@ class Keyboard(Frame):
 
     def __add_result_button(self):
         result_button = ResultButton(self.__root)
-        result_button.add_to_grid(row = 4, column = 2)
+        result_button.add_to_grid(row = 5, column = 2)
 
     def __make_operation_buttons(self):
-        self.__add_button.add_to_grid(row=4, column=3)
-        self.__div_button.add_to_grid(row=1, column=3)
-        self.__mul_button.add_to_grid(row=2, column=3)
-        self.__sub_button.add_to_grid(row=3, column=3)
+        self.__add_button.add_to_grid(row=5, column=3)
+        self.__div_button.add_to_grid(row=2, column=3)
+        self.__mul_button.add_to_grid(row=3, column=3)
+        self.__sub_button.add_to_grid(row=4, column=3)
         self.__add_on_click_events()
 
     def __digit_buttons(self):
@@ -52,20 +52,20 @@ class Keyboard(Frame):
         digit_buttons = self.__digit_buttons()
         dot_button = DigitButton(self.__root, digit=".")
 
-        dot_button.add_to_grid(row=4, column=1)
-        digit_buttons[0].add_to_grid(row=4, column=0)
+        dot_button.add_to_grid(row=5, column=1)
+        digit_buttons[0].add_to_grid(row=5, column=0)
 
-        digit_buttons[1].add_to_grid(row=3, column=0)
-        digit_buttons[2].add_to_grid(row=3, column=1)
-        digit_buttons[3].add_to_grid(row=3, column=2)
+        digit_buttons[1].add_to_grid(row=4, column=0)
+        digit_buttons[2].add_to_grid(row=4, column=1)
+        digit_buttons[3].add_to_grid(row=4, column=2)
 
-        digit_buttons[4].add_to_grid(row=2, column=0)
-        digit_buttons[5].add_to_grid(row=2, column=1)
-        digit_buttons[6].add_to_grid(row=2, column=2)
+        digit_buttons[4].add_to_grid(row=3, column=0)
+        digit_buttons[5].add_to_grid(row=3, column=1)
+        digit_buttons[6].add_to_grid(row=3, column=2)
 
-        digit_buttons[7].add_to_grid(row=1, column=0)
-        digit_buttons[8].add_to_grid(row=1, column=1)
-        digit_buttons[9].add_to_grid(row=1, column=2)
+        digit_buttons[7].add_to_grid(row=2, column=0)
+        digit_buttons[8].add_to_grid(row=2, column=1)
+        digit_buttons[9].add_to_grid(row=2, column=2)
 
     def __add_on_click_events(self):
         self.__add_button.on_click(lambda: self.__calculator.write("+"))

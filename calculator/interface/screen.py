@@ -1,12 +1,29 @@
-from tkinter import Tk, Frame, Label
+from tkinter import Tk, Frame, Label, RIGHT
+from tkinter.font import Font
 
 class Screen(Frame):
 
-    def __init__(self, content, root = None):
-        Frame.__init__(self, root, bg="white", width=400, height=50)
+    PADDING = 5
+    FONT_FAMILY = "Helvetica"
+    FONT_SIZE = 24
+
+    def __init__(self, root = None, content = "", width = 0, height = 0):
+        Frame.__init__(self, root, width = width, height = height)
         self.__root = root
-        self.__label = Label(self.__root, text=content)
-        self.__label.grid(row=0, rowspan=1, columnspan=4)
+        self.__label = Label(
+            root = self.__root,
+            text = content,
+            bg = "white",
+            borderwidth=2,
+            anchor = "e",
+            justify = RIGHT,
+            relief="groove",
+            font = Font(
+                family = Screen.FONT_FAMILY,
+                size = Screen.FONT_SIZE
+            )
+        )
+        self.__label.grid(row=0, rowspan=2, columnspan=4, stick="news", padx=5, pady=5)
 
     def content(self, value):
         self.__label.config(text = value)

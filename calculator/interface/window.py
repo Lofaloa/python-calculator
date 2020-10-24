@@ -13,11 +13,11 @@ class Window(Frame, Observer):
     HEIGHT = 400
 
     def __init__(self, root = None, title = ""):
-        Frame.__init__(self, root, width=200, height=400)
+        Frame.__init__(self, root)
         self.__root = root
         self.__calculator = Calculator()
-        self.__screen = Screen(content=self.__calculator.expression())
-        self.__keyboard = Keyboard(self.__calculator)
+        self.__screen = Screen(width = Window.WIDTH, height = 0.25 * Window.HEIGHT)
+        self.__keyboard = Keyboard(self.__calculator, width = Window.WIDTH, height = 0.75 * Window.HEIGHT)
         self.__setup()
 
     def show(self):
@@ -45,8 +45,8 @@ class Window(Frame, Observer):
             self.__root.columnconfigure(column, weight = 1)
 
     def __make_widgets(self):
-        self.__screen.grid(row=0, rowspan=1, columnspan=4)
-        self.__keyboard.grid(row=1, rowspan=4, columnspan=4)
+        self.__screen.grid(row=0, rowspan=2, columnspan=4, stick="news", padx=5, pady=5)
+        self.__keyboard.grid(row=2, rowspan=4, columnspan=4)
 
     def update(self, state):
         self.__screen.content(state)
